@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bárbara Mota — Academic Portfolio</title>
+  <meta name="description" content="Academic website for publications, research, and essays." />
+  <meta name="color-scheme" content="light dark">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root{
+      --bg-color: #faf7f5;
+      --text-color: #2e2e2e;
+      --muted-color: #6d6d6d;
+      --header-height: 60px;
+
+      /* Refined color palette - more harmonious */
+      --primary: #7d3b5f;
+      --primary-light: #9c4668;
+      --primary-dark: #5d2c4a;
+      --accent: #5a7d4f;
+      --accent-light: #7d9c6e;
+      --light-bg: #f0e8e8;
+      --light-border: #e5d6df;
+      
+      /* Gradient definitions */
+      --gradient-topbar: linear-gradient(90deg, var(--primary-light), var(--primary));
+    }
+
+    @media (prefers-color-scheme:dark){
+      :root{
+        --bg-color: #1a1919;
+        --text-color: #e6e6e6;
+        --muted-color: #a0a0a0;
+        --light-bg: #2a2329;
+        --light-border: #3e3139;
+      }
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+
+    /* Custom scrollbar styling */
+    ::-webkit-scrollbar {
+      width: 12px;
+      height: 12px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg-color);
+      border-radius: 6px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--primary-light);
+      border-radius: 6px;
+      border: 2px solid var(--bg-color);
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--primary);
+    }
+
+    /* Firefox scrollbar */
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: var(--primary-light) var(--bg-color);
+    }
+
+    /* Academic and elegant font */
+    body{
+      font-family: 'Crimson Pro', serif;
+      line-height: 1.2;
+      color: var(--text-color);
+      background: var(--bg-color);
+      padding: 0;
+      margin: 0;
+      font-weight: 300;
+      font-size: 1.1rem;
+    }
+    
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+      color: var(--text-color);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+    
+    h1{
+      color: var(--primary);
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+    
+    h2{
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--light-border);
+    }
+
+    .container{width:100%;max-width:1100px;margin:0 auto;padding:0 1.8rem}
+
+    /* screen-reader only helper */
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+    /* top progress bar */
+    #top-progress{
+      position:fixed;
+      left:0;
+      width: 100%;
+      top:0;
+      height:3px;
+      width:0;
+      background: var(--gradient-topbar);
+      z-index:9999;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+      transition: width 0.2s ease;
+    }
+
+    /* header */
+    header{
+      height: var(--header-height);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: sticky;
+      top: 3px;
+      z-index: 1000;
+      background: rgba(245, 223, 232, 0.96); /* Using primary color with transparency */
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+    
+    .header-inner{
+      width:100%;
+      max-width:1100px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0 1.8rem;
+    }
+
+    /* Navigation container */
+.nav-menu {
+  display: flex;
+  gap: .75rem;               /* increases spacing between buttons */
+  list-style: none;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Navigation buttons */
+.nav-menu a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: .7rem 1.2rem;     /* increases button height and width */
+  border-radius: 8px;        /* slightly more rounded corners */
+  font-weight: 600;          /* stronger font weight for emphasis */
+  font-size: 0.95rem;        /* larger text for readability */
+  text-decoration: none;
+  color: var(--primary);
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: all 0.25s ease;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Hover effect */
+.nav-menu a:hover {
+  background: rgba(255,255,255,0.25);
+  transform: translateY(-2px);
+}
+
+/* Active (selected) state */
+.nav-menu a.active {
+  color: #fff;
+  background: var(--primary);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+    /* main layout */
+    main{
+      padding-top: 2rem;
+      padding-bottom: 3rem;
+      min-height: calc(100vh - var(--header-height) - 20px);
+    }
+    
+    section.page{
+      display: none;
+      min-height: calc(100vh - var(--header-height) - 40px);
+      padding: 2rem 0;
+    }
+    
+    section.page.active{
+      display: block;
+      animation: fadeIn 0.4s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* About: image on the left, text on the right */
+    .profile-wrap{
+      display: flex;
+      gap: 2.5rem;
+      align-items: flex-start;
+    }
+    
+    .left-column{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      flex: 0 0 auto;
+    }
+
+    /* photo */
+    .profile-img{
+      width: 220px;
+      height: 290px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      border: 1px solid var(--light-border);
+    }
+
+    /* social icons: small, circular, horizontal (brand colors) */
+    .social-list{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.6rem;
+      margin-top: 0.5rem;
+    }
+    
+    .social-link{
+      width: 38px;
+      height: 38px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      text-decoration: none;
+      border: 1px solid transparent;
+      background: var(--light-bg);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      transition: all 0.2s ease;
+      color: var(--primary);
+    }
+    
+    .social-link i{
+      font-size: 16px;
+    }
+    
+    .social-link:hover{
+      transform: translateY(-3px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+      background: var(--primary);
+      color: white;
+    }
+    
+    /* Platform-specific colors */
+    .social-link.osf:hover{ background: var(--primary-dark); }
+    .social-link.scholar:hover{ background: var(--accent); }
+    .social-link.orcid:hover{ background: var(--accent-light); }
+    .social-link.mastodon:hover{ background: #6364FF; }
+    .social-link.twitter:hover{ background: #1DA1F2; }
+    .social-link.email:hover{ background: #EA4335; }
+
+    .about-content{
+      flex: 1 1 auto;
+    }
+    
+    .section-inner{
+      max-width: 820px;
+    }
+
+    /* cards with subtle background */
+    .card{
+      padding: 1.8rem;
+      color: var(--text-color);
+      background: var(--light-bg);
+      border-radius: 8px;
+      border: 1px solid var(--light-border);
+    }
+    
+    footer{
+      padding: 2rem 0;
+      text-align: center;
+      color: var(--muted-color);
+      border-top: 1px solid var(--light-border);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+    }
+
+    /* responsiveness */
+      
+      .right-column{
+        order: 2;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      
+      .profile-img{
+        width: 180px;
+        height: 240px;
+      }
+      
+      .nav-menu {
+        gap: 0.4rem;
+      }
+      
+      .nav-menu a {
+        padding: 0.4rem 0.7rem;
+        font-size: 0.8rem;
+      }
+    }
+    
+    @media (max-width: 600px){
+      .container{
+        padding: 0 1.2rem;
+      }
+      
+      h1{
+        font-size: 1.6rem;
+      }
+      
+      h2{
+        font-size: 1.4rem;
+      }
+      
+      .profile-img{
+        width: 150px;
+        height: 200px;
+      }
+      
+      .social-link{
+        width: 34px;
+        height: 34px;
+      }
+      
+      .card {
+        padding: 1.4rem;
+      }
+    }
+.about-content p {
+  text-align: justify;
+}
+.profile-img {
+  filter: sepia(20%) hue-rotate(-15deg) saturate(120%);
+}
+.social-link:hover {
+  box-shadow: 0 12px 32px rgba(0,0,0,0.14);
+}
+.nav-menu a {
+  padding: 0.25rem 0.6rem;
+  font-size: 0.78rem;
+  border-radius: 999px;
+  color: #7d3b5f;
+  border: 1px solid #7d3b5f;
+  background: rgba(209, 0, 122, 0.12);
+  box-shadow: 0 1px 5px #7d3b5f;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.25s ease;
+}
+body, .about-content p 
+.card {
+  box-shadow: 0 4px 18px rgba(125,59,95,0.08);
+}
+::selection {
+  background: var(--accent-light);
+  color: #fff;
+}
+footer {
+  font-size: 0.85rem;
+  color: var(--muted-color);
+  opacity: 0.7;
+}
+.card:hover {
+  box-shadow: 0 8px 32px rgba(125,59,95,0.14);
+  transform: translateY(-3px);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+/* Align header name and keep nav buttons on one line */
+header .header-inner {
+  display: flex;
+  align-items: center;   /* vertical alignment */
+  justify-content: space-between; /* name left, nav right */
+  flex-wrap: nowrap;     /* prevent buttons from wrapping */
+}
+
+header .brand h1 {
+  margin: 0;
+  white-space: nowrap;   /* prevents the name from breaking into two lines */
+  padding-left: 3rem;   /* moves the name slightly right */
+  font-size: 1.3rem;    /* optional: adjust visual balance */
+}
+/* Move header name closer to center, aligned with profile photo */
+header .brand {
+  margin-left: 1rem; /* adjust value as needed to match photo alignment */
+}
+
+header .brand h1 {
+  margin: 0; /* keep no extra margin */
+}
+/* Make nav buttons smaller */
+header .nav-menu a {
+  padding: 0.6rem 0.6rem;  /* vertical | horizontal */
+  font-size: 0.7rem;      /* smaller text */
+}
+  </style>
+</head>
+<body>
+  <div id="top-progress" role="progressbar" aria-hidden="true"></div>
+
+  <header>
+    <div class="header-inner container">
+      <div class="brand"><h1>Bárbara Mota</h1></div>
+      <nav>
+        <ul class="nav-menu" role="menubar" aria-label="Main navigation">
+          <li><a href="#about" data-page="about" class="active" role="menuitem">About</a></li>
+          <li><a href="#education" data-page="education" role="menuitem">Education</a></li>
+          <li><a href="#publications" data-page="publications" role="menuitem">Publications</a></li>
+          <li><a href="#research" data-page="research" role="menuitem">Research</a></li>
+          <li><a href="#talks" data-page="talks" role="menuitem">Talks</a></li>
+          <li><a href="#blog" data-page="blog" role="menuitem">Blog</a></li>
+          <li><a href="#outreach" data-page="outreach" role="menuitem">Outreach</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- ABOUT page (photo left, text right; icons below photo) -->
+    <section id="about" class="page active" aria-labelledby="about-title">
+      <div class="profile-wrap">
+        <div class="left-column" aria-hidden="false">
+          <!-- image using the i0.wp.com URL -->
+          <img src="https://i0.wp.com/www.bitss.org/wp-content/uploads/2018/07/BMFariasMota-e1532731882488.jpg?resize=300%2C400&ssl=1" alt="Bárbara Mota" class="profile-img">
+
+          <div class="social-list" aria-label="Social links">
+            <a class="social-link osf" href="https://osf.io/y2m7f" target="_blank" rel="noopener" title="OSF">
+              <i class="fas fa-archive" aria-hidden="true"></i>
+              <span class="sr-only">OSF</span>
+            </a>
+            <a class="social-link scholar" href="https://scholar.google.com/citations?user=PQnnSucAAAAJ" target="_blank" rel="noopener" title="Google Scholar">
+              <i class="fas fa-graduation-cap" aria-hidden="true"></i>
+              <span class="sr-only">Google Scholar</span>
+            </a>
+            <a class="social-link orcid" href="https://orcid.org/0000-0001-8495-2469" target="_blank" rel="noopener" title="ORCID">
+              <i class="fab fa-orcid" aria-hidden="true"></i>
+              <span class="sr-only">ORCID</span>
+            </a>
+            <a class="social-link mastodon" href="https://mastodon.social/@barbaramota" target="_blank" rel="noopener" title="Mastodon">
+              <i class="fab fa-mastodon" aria-hidden="true"></i>
+              <span class="sr-only">Mastodon</span>
+            </a>
+            <a class="social-link twitter" href="https://twitter.com/barbarafmota" target="_blank" rel="noopener" title="Twitter">
+              <i class="fab fa-twitter" aria-hidden="true"></i>
+              <span class="sr-only">Twitter</span>
+            </a>
+            <a class="social-link email" href="mailto:barbarafmota@gmail.com" title="Email">
+              <i class="fas fa-envelope" aria-hidden="true"></i>
+              <span class="sr-only">Email</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="about-content section-inner">
+          <h2 id="about-title">About Me</h2>
+          <p>I hold a master's degree in Sociology from Freie Universität Berlin and my research explores media narratives on artificial intelligence, focusing on power asymmetries, risks and sentiments. I have published articles on hacker activism and the surveillance society, and my research interests include digital sociology, digital democracy, the politics of AI and AI and society.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education" class="page" aria-labelledby="education-title">
+      <div class="section-inner">
+        <h2 id="education-title">Education</h2>
+        <div class="card">
+          <div style="margin-bottom:1.5rem;">
+            <strong>Master of Arts — Sociology (European Societies)</strong><br>
+            Freie Universität Berlin — 2022–2025
+            <div style="margin-top:.8rem; padding-left:.8rem; border-left:3px solid var(--primary);">
+              <strong>Title:</strong> Weapon or Wonder? The Media's Political Framing of AI Across the Global North and South
+            </div>
+          </div>
+
+          <div style="margin-bottom:1.5rem;">
+            <strong>Master in Sociology</strong><br>
+            Federal University of Pernambuco — 2016–2018
+            <div style="margin-top:.8rem; padding-left:.8rem; border-left:3px solid var(--primary);">
+              <strong>Title:</strong> Government of algorithms? WikiLeaks, technopolitics and invisible filters on the society of control
+            </div>
+          </div>
+
+          <div>
+            <strong>Bachelor of Social Sciences</strong><br>
+            Federal University of Pernambuco — 2010–2015
+            <div style="margin-top:.8rem; padding-left:.8rem; border-left:3px solid var(--primary);">
+              <strong>Title:</strong> Who control the politics of no one? Anonymous Brazil and hacktivism in communication networks
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Publications -->
+    <section id="publications" class="page" aria-labelledby="publications-title">
+      <div class="section-inner">
+        <h2 id="publications-title">Publications</h2>
+        <div class="card">
+          <div style="margin-bottom:1.2rem;">
+            <strong>Mota, B. M. F.</strong>
+            <div style="color: var(--muted-color); margin-top: 0.4rem;">
+              A informação quer ser livre: uma análise sobre o ativismo dos artífices da rede e o controle na sociedade contemporânea — Três Pontos - UFMG, 11(1), 107–115, 2023
+            </div>
+          </div>
+          
+          <div style="margin-bottom:1.2rem;">
+            <strong>Mota, B. M. F., & Figueiredo Filho, D. B.</strong>
+            <div style="color: var(--muted-color); margin-top: 0.4rem;">
+              Quem controla a política de ninguém? Anonymous Brasil e o ativismo hacker nas redes de comunicação — Emancipação, 15(2), 299–316, 2015
+            </div>
+          </div>
+          
+          <div style="margin-bottom:1.2rem;">
+            <strong>Mota, B. M. F., Hayashi, R., & Fernandes, A. T.</strong>
+            <div style="color: var(--muted-color); margin-top: 0.4rem;">
+              Hacking político: crime cibernético ou manifestação legal de protesto? — Argumentum, 8(3), 122–132, 2016
+            </div>
+          </div>
+          
+          <div>
+            <strong>Mota, B. M. F.</strong>
+            <div style="color: var(--muted-color); margin-top: 0.4rem;">
+              Métodos quantitativos em Ciência Política — Sociedade e Cultura, 25, Universidade Federal de Goiás, 2022
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="research" class="page" aria-labelledby="research-title">
+      <div class="section-inner">
+        <h2 id="research-title">Research</h2>
+        <div class="card"></div>
+      </div>
+    </section>
+    
+    <section id="talks" class="page" aria-labelledby="talks-title">
+      <div class="section-inner">
+        <h2 id="talks-title">Talks & Events</h2>
+        <div class="card"></div>
+      </div>
+    </section>
+    
+    <section id="blog" class="page" aria-labelledby="blog-title">
+      <div class="section-inner">
+        <h2 id="blog-title">Blog</h2>
+        <div class="card"></div>
+      </div>
+    </section>
+    
+    <section id="outreach" class="page" aria-labelledby="outreach-title">
+      <div class="section-inner">
+        <h2 id="outreach-title">Outreach</h2>
+        <div class="card"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© <span id="year"></span> Bárbara Mota</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    
+    const navLinks = document.querySelectorAll('.nav-menu a');
+    const pages = document.querySelectorAll('section.page');
+    
+    function showPage(id, push = true) {
+      pages.forEach(p => p.classList.remove('active'));
+      const target = document.getElementById(id);
+      if (!target) return;
+      target.classList.add('active');
+      
+      navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('data-page') === id));
+      
+      if (push) {
+        history.pushState({page:id}, '', `#${id}`);
+      }
+      
+      window.scrollTo({top: 0, behavior: 'instant'});
+    }
+    
+    navLinks.forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const page = link.getAttribute('data-page');
+        showPage(page, true);
+      });
+    });
+    
+    window.addEventListener('popstate', e => {
+      const hash = location.hash.replace('#','') || 'about';
+      showPage(hash, false);
+    });
+    
+    (function initFromHash() {
+      const hash = location.hash.replace('#','') || 'about';
+      showPage(hash, false);
+    })();
+    
+    const topProgress = document.getElementById('top-progress');
+    window.addEventListener('scroll', () => {
+      const active = document.querySelector('section.page.active');
+      if (!active) return;
+      const total = Math.max(active.scrollHeight - window.innerHeight + 100, 1);
+      const scrolled = Math.min(Math.max(window.scrollY - (active.offsetTop - 60), 0), total);
+      topProgress.style.width = ((scrolled / total) * 100) + '%';
+    }, {passive:true});
+    
+    document.querySelectorAll('.nav-menu a').forEach(a => {
+      a.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          a.click();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
