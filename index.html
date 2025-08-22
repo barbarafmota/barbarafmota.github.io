@@ -313,54 +313,111 @@
     }
 
     /* ==========================================================================
-       RESPONSIVE ADJUSTMENTS
-       - Keep readability and hit targets on smaller screens
-       ========================================================================== */
-    @media (max-width: 900px) {
-      .right-column { order: 2; flex-direction: column; gap: 1.5rem; }
-      .profile-img { width: 180px; height: 240px; }
-      .nav-menu { gap: 0.4rem; }
-      .nav-menu a { padding: 0.4rem 0.7rem; font-size: 0.8rem; }
-      .about-content, .about-content p {
-        font-size: 1.03rem !important;
-        line-height: 1.65 !important;
-      }
-    }
+   RESPONSIVE ADJUSTMENTS
+   - Maintain readability, spacing, and usability across all screens
+   ========================================================================== */
 
-    @media (max-width: 600px) {
-      .container { padding: 0 1.2rem; }
-      h1 { font-size: 1.6rem; }
-      h2 { font-size: 1.4rem; }
-      .profile-img { width: 150px; height: 200px; }
-      .social-link { width: 34px; height: 34px; }
-      .card { padding: 1.4rem; }
-      .nav-menu a {
-        padding: 0.9rem 1rem !important;
-        font-size: 1rem !important;
-      }
-      .about-content, .about-content p {
-        font-size: 1rem !important;
-        line-height: 1.6 !important;
-      }
-    }
+/* Default (desktop-first) styles are already defined above */
 
-    /* Small selection styling */
-    ::selection { background: var(--accent-light); color: #fff; }
+/* Keep About Me text style the same everywhere */
+.about-content,
+.about-content p {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 1.06rem !important;
+  line-height: 1.75 !important;
+  color: var(--text-color) !important;
+  text-rendering: optimizeLegibility;
+  text-align: justify;
+}
 
-    /* Ensure about text uses Inter for readability */
-    .about-content, .about-content p {
-      font-family: 'Inter', sans-serif !important;
-      font-size: 1.06rem !important;
-      line-height: 1.75 !important;
-      color: var(--text-color) !important;
-      text-rendering: optimizeLegibility;
-      text-align: justify
-    }
+/* Medium screens: tablets, small laptops */
+@media (max-width: 1024px) {
+  .profile-wrap {
+    gap: 2rem;
+  }
+  .profile-img {
+    width: 200px;
+    height: 260px;
+  }
+  .nav-menu {
+    flex-wrap: wrap; /* Allow nav to wrap into two lines if needed */
+  }
+}
 
-    /* Final, local overrides (easy to find and tweak) */
-    /* - Navigation padding and hit area are enforced with !important to guarantee consistency. */
-    .nav-menu a { padding: 0.85rem 1.05rem !important; font-size: 0.98rem !important; border-radius: 10px !important; }
+/* Small screens: phones in landscape or smaller tablets */
+@media (max-width: 900px) {
+  .profile-wrap {
+    flex-direction: column;  /* Stack image and about text vertically */
+    align-items: center;
+    text-align: center;
+  }
+  .profile-img {
+    width: 180px;
+    height: 240px;
+  }
+  .about-content {
+    margin-top: 1.2rem;
+    text-align: left; /* keep normal text flow */
+  }
+  .nav-menu {
+    gap: 0.4rem;
+  }
+  .nav-menu a {
+    padding: 0.4rem 0.7rem;
+    font-size: 0.85rem;
+  }
+}
 
+/* Extra small screens: phones in portrait */
+@media (max-width: 600px) {
+  .container {
+    padding: 0 1rem; /* Reduce side padding */
+  }
+  h1 {
+    font-size: 1.3rem;
+    text-align: center;
+  }
+  h2 {
+    font-size: 1.2rem;
+  }
+  .profile-img {
+    width: 140px;
+    height: 180px;
+  }
+  .social-list {
+    gap: 0.4rem;
+  }
+  .social-link {
+    width: 32px;
+    height: 32px;
+  }
+  .card {
+    padding: 1.2rem;
+  }
+  .nav-menu {
+    flex-direction: column; /* Vertical nav for mobile */
+    align-items: stretch;
+    gap: 0.6rem;
+  }
+  .nav-menu a {
+    display: block;
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 0.95rem;
+  }
+}
+
+/* Ultra small: very narrow phones */
+@media (max-width: 380px) {
+  .profile-img {
+    width: 120px;
+    height: 160px;
+  }
+  .nav-menu a {
+    font-size: 0.85rem;
+    padding: 0.6rem;
+  }
+}
   </style>
 </head>
 
@@ -665,6 +722,7 @@
   </script>
 </body>
 </html>
+
 
 
 
