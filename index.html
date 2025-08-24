@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Bárbara Mota</title>
-  <meta name="description" content="Academic website for publications, research, and essays." />
+  <meta name="description" content="Academic website" />
   <meta name="color-scheme" content="light dark">
   <link rel="icon" type="image/png" href="/bm-logo.png">
    
@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
-    /* ==========================================================================
+    /* ========================================================================== 
        VARIABLES & COLOR SCHEME
        - Keep all visual tokens in :root for easy editing and for dark-mode support.
        ========================================================================== */
@@ -51,7 +51,7 @@
       }
     }
 
-    /* ==========================================================================
+    /* ========================================================================== 
        RESET & BASE TYPOGRAPHY
        ========================================================================== */
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -109,7 +109,7 @@
       border: 0;
     }
 
-    /* ==========================================================================
+    /* ========================================================================== 
        CUSTOM SCROLLBAR
        - Visual nicety only; kept lightweight and consistent across engines
        ========================================================================== */
@@ -119,7 +119,7 @@
     ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
     * { scrollbar-width: thin; scrollbar-color: var(--primary-light) var(--bg-color); }
 
-    /* ==========================================================================
+    /* ========================================================================== 
        TOP PROGRESS BAR
        - A thin bar that shows scroll progress inside the current page section.
        ========================================================================== */
@@ -135,7 +135,7 @@
       transition: width 0.2s ease;
     }
 
-    /* ==========================================================================
+    /* ========================================================================== 
        HEADER & NAVIGATION
        - Sticky header, brand on the left, nav menu on the right.
        ========================================================================== */
@@ -208,7 +208,31 @@
       box-shadow: 0 4px 8px rgba(0,0,0,0.15);
     }
 
-    /* ==========================================================================
+    /* Hamburger menu button (hidden by default) */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 2rem;
+      height: 2rem;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 10;
+    }
+
+    .hamburger span {
+      width: 2rem;
+      height: 0.25rem;
+      background: var(--primary);
+      border-radius: 10px;
+      transition: all 0.3s linear;
+      position: relative;
+      transform-origin: 1px;
+    }
+
+    /* ========================================================================== 
        MAIN LAYOUT & PAGES
        - Each 'page' is a section that is shown/hidden via the .active class.
        ========================================================================== */
@@ -234,7 +258,7 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* ==========================================================================
+    /* ========================================================================== 
        ABOUT / PROFILE LAYOUT
        - Left column = image + social icons; right column = about text
        ========================================================================== */
@@ -312,112 +336,175 @@
       opacity: 0.7;
     }
 
-    /* ==========================================================================
-   RESPONSIVE ADJUSTMENTS
-   - Maintain readability, spacing, and usability across all screens
-   ========================================================================== */
+    /* ========================================================================== 
+       RESPONSIVE ADJUSTMENTS
+       - Spacing, and usability across all screens
+       ========================================================================== */
 
-/* Default (desktop-first) styles are already defined above */
+    /* About Me */
+    .about-content,
+    .about-content p {
+      font-family: 'Inter', sans-serif !important;
+      font-size: 1.06rem !important;
+      line-height: 1.75 !important;
+      color: var(--text-color) !important;
+      text-rendering: optimizeLegibility;
+      text-align: justify;
+    }
 
-/* Keep About Me text style the same everywhere */
-.about-content,
-.about-content p {
-  font-family: 'Inter', sans-serif !important;
-  font-size: 1.06rem !important;
-  line-height: 1.75 !important;
-  color: var(--text-color) !important;
-  text-rendering: optimizeLegibility;
-  text-align: justify;
-}
+    /* Medium screens: tablets, small laptops */
+    @media (max-width: 1024px) {
+      .profile-wrap {
+        gap: 2rem;
+      }
+      .profile-img {
+        width: 200px;
+        height: 260px;
+      }
+      .nav-menu {
+        flex-wrap: wrap; /* Allow nav to wrap into two lines if needed */
+      }
+    }
 
-/* Medium screens: tablets, small laptops */
-@media (max-width: 1024px) {
-  .profile-wrap {
-    gap: 2rem;
-  }
-  .profile-img {
-    width: 200px;
-    height: 260px;
-  }
-  .nav-menu {
-    flex-wrap: wrap; /* Allow nav to wrap into two lines if needed */
-  }
-}
+    /* Small screens: phones in landscape or smaller tablets */
+    @media (max-width: 900px) {
+      .profile-wrap {
+        flex-direction: column;  /* Stack image and about text vertically */
+        align-items: center;
+        text-align: center;
+      }
+      .profile-img {
+        width: 180px;
+        height: 240px;
+      }
+      .about-content {
+        margin-top: 1.2rem;
+        text-align: left; /* keep normal text flow */
+      }
+      .nav-menu {
+        gap: 0.4rem;
+      }
+      .nav-menu a {
+        padding: 0.4rem 0.7rem;
+        font-size: 0.85rem;
+      }
+    }
 
-/* Small screens: phones in landscape or smaller tablets */
-@media (max-width: 900px) {
-  .profile-wrap {
-    flex-direction: column;  /* Stack image and about text vertically */
-    align-items: center;
-    text-align: center;
-  }
-  .profile-img {
-    width: 180px;
-    height: 240px;
-  }
-  .about-content {
-    margin-top: 1.2rem;
-    text-align: left; /* keep normal text flow */
-  }
-  .nav-menu {
-    gap: 0.4rem;
-  }
-  .nav-menu a {
-    padding: 0.4rem 0.7rem;
-    font-size: 0.85rem;
-  }
-}
+    /* Mobile menu styles */
+    @media (max-width: 768px) {
+      /* Show hamburger menu on mobile */
+      .hamburger {
+        display: flex;
+      }
+      
+      /* Adjust header layout for mobile */
+      .header-inner {
+        padding: 0 1rem;
+        position: relative; /* allow absolute positioning inside header-inner */
+      }
+      
+      header .brand h1 {
+        padding-left: 0;
+        font-size: 1.2rem;
+      }
 
-/* Extra small screens: phones in portrait */
-@media (max-width: 600px) {
-  .container {
-    padding: 0 1rem; /* Reduce side padding */
-  }
-  h1 {
-    font-size: 1.3rem;
-    text-align: center;
-  }
-  h2 {
-    font-size: 1.2rem;
-  }
-  .profile-img {
-    width: 140px;
-    height: 180px;
-  }
-  .social-list {
-    gap: 0.4rem;
-  }
-  .social-link {
-    width: 32px;
-    height: 32px;
-  }
-  .card {
-    padding: 1.2rem;
-  }
-  .nav-menu {
-    flex-direction: column; /* Vertical nav for mobile */
-    align-items: stretch;
-    gap: 0.6rem;
-  }
-  .nav-menu a {
-    display: block;
-    width: 100%;
-    padding: 0.8rem;
-    font-size: 0.95rem;
-  }
-}
+      /* === NEW: align brand and hamburger with equal lateral spacing ===
+         Place the brand at exactly the same distance from the left edge
+         as the hamburger is from the right edge (both using 1rem).
+         This keeps symmetric spacing without altering content.
+         Only layout/CSS changes — no content changes.
+      */
+      .brand {
+        position: absolute;
+        left: 1rem; /* same lateral distance used by .hamburger (right:1rem) */
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1100;
+      }
 
-/* Ultra small: very narrow phones */
-@media (max-width: 380px) {
-  .profile-img {
-    width: 120px;
-    height: 160px;
-  }
-  .nav-menu a {
-    font-size: 0.85rem;
-    padding: 0.6rem;
-  }
-}
+      /* Move hamburger to the far right of the header (mobile) */
+      .hamburger {
+        position: absolute;
+        right: 1rem;              /* lateral right placement matching .brand left */
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1100;           /* ensure it sits above the nav when closed */
+      }
+      
+      /* Navigation menu for mobile - hidden by default */
+      .nav-menu {
+        position: fixed;
+        top: var(--header-height);
+        left: 0;
+        width: 100%;
+        height: 0;
+        flex-direction: column;
+        background: rgba(245, 223, 232, 0.98);
+        backdrop-filter: blur(8px);
+        overflow: hidden;
+        transition: height 0.3s ease;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      }
+      
+      /* When menu is open */
+      .nav-menu.active {
+        height: auto;
+        padding: 1rem;
+        border-top: 1px solid rgba(0,0,0,0.1);
+      }
+      
+      .nav-menu li {
+        width: 100%;
+        margin: 0.5rem 0;
+      }
+      
+      .nav-menu a {
+        width: 100%;
+        padding: 1rem !important;
+        font-size: 1rem !important;
+        border-radius: 8px;
+      }
+    }
+
+    /* Extra small screens: phones in portrait */
+    @media (max-width: 600px) {
+      .container {
+        padding: 0 1rem; /* Reduce side padding */
+      }
+      h1 {
+        font-size: 1.3rem;
+        text-align: center;
+      }
+      h2 {
+        font-size: 1.2rem;
+      }
+      .profile-img {
+        width: 140px;
+        height: 180px;
+      }
+      .social-list {
+        gap: 0.4rem;
+      }
+      .social-link {
+        width: 32px;
+        height: 32px;
+      }
+      .card {
+        padding: 1.2rem;
+      }
+    }
+
+    /* Ultra small: very narrow phones */
+    @media (max-width: 380px) {
+      .profile-img {
+        width: 120px;
+        height: 160px;
+      }
+      .nav-menu a {
+        font-size: 0.85rem;
+        padding: 0.6rem;
+      }
+    }
   </style>
 </head>
 
@@ -435,6 +522,13 @@
       <div class="brand">
         <h1>Bárbara Mota</h1>
       </div>
+
+      <!-- Hamburger menu button for mobile -->
+      <button class="hamburger" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
 
       <nav>
         <ul class="nav-menu" role="menubar" aria-label="Main navigation">
@@ -604,7 +698,7 @@
       <a href="https://barbaramota.substack.com/" target="_blank" rel="noopener">
         <img src= "https://uploads.onecompiler.io/43ubywzqn/43ucmb4zw/theroad.png"
              alt="The Road Not Coded"
-             style="height:300px; display:block; margin:auto;">
+             style="max-height:300px; max-width: 100%; display:block; margin:auto;">
       </a>
     </div>
   </div>
@@ -619,15 +713,31 @@
 
   </main>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="container">
-      <p>© <span id="year"></span> Bárbara Mota</p>
-    </div>
-  </footer>
+  <!-- FOOTER: CC BY 4.0 image (button) -->
+<footer>
+  <div class="container" xmlns:cc="http://creativecommons.org/ns#">
+    <!-- machine-readable license link -->
+    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/" />
+
+    <p style="display:flex; align-items:center; gap:0.6rem;">
+      <span> <span id="year"></span> Bárbara Mota</span>
+
+      <!-- Visible image linking to the official license page -->
+      <a href="https://creativecommons.org/licenses/by/4.0/" rel="license" title="Creative Commons Attribution 4.0 International" aria-label="License: Creative Commons Attribution 4.0">
+        <img 
+          src="https://licensebuttons.net/l/by/4.0/88x31.png" 
+          alt="Licensed under Creative Commons Attribution 4.0 (CC BY 4.0)" 
+          style="display:block; height:31px; width:auto; border:0;">
+      </a>
+    </p>
+
+    <!-- hidden text for screen readers -->
+    <p class="sr-only">Licensed under Creative Commons Attribution 4.0 International (CC BY 4.0). Full license: https://creativecommons.org/licenses/by/4.0/</p>
+  </div>
+</footer>
 
   <script>
-    /* ==========================================================================
+    /* ========================================================================== 
        Basic page behaviors and accessibility helpers
        - All behavior preserved from the original file. Comments explain intent.
        ========================================================================== */
@@ -639,6 +749,8 @@
     // Grab DOM nodes once for later use
     const navLinks = document.querySelectorAll('.nav-menu a');
     const pages = document.querySelectorAll('section.page');
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
 
     /**
      * showPage(id, push)
@@ -665,7 +777,17 @@
 
       // Scroll to top of the page (standard behavior)
       window.scrollTo({ top: 0, behavior: 'auto' });
+      
+      // Close mobile menu after selection
+      if (navMenu.classList.contains('active')) {
+        navMenu.classList.remove('active');
+      }
     }
+
+    // Toggle mobile menu
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
 
     // Attach click handlers to navigation links (prevents default anchor jump)
     navLinks.forEach(link => {
@@ -723,12 +845,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
